@@ -12,12 +12,13 @@ mat =np.random.rand(100, 100)
 
 app = Flask(__name__)
 
-def make_picture(x, y):
+def make_picture(x):
     #data = np.hstack(x,y)
-    data = np.random.randint(1,50, size=(50,2))
+    
+    data = np.random.randint(1,50, size=(50,x))
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
-    ax1 = sns.violinplot(data)
+    ax1 = sns.violinplot(data=data)
     output = StringIO.StringIO()
     plt.savefig(output, format='png')
     output.seek(0)
@@ -49,22 +50,26 @@ def index():
     return render_template('plot.html', im=plot_url)
 
 #@app.route('/thing', methods=['POST'])
-@app.route('/thing', methods=['POST'])
-def thing():
+@app.route('/thing', methods=['POST', 'GET'])
+def pictures():
     
     #if request.method == 'POST':
     #user_entry = (request.form['entry'])
     #thing = range(int(user_entry))
+    thing_size=5
     thing = range(5)
-    ys = [np.random.randint(1,x+4) for x in thing]
-    picture = make_picture(thing, ys)
+    #ys = [np.random.randint(1,x+4) for x in thing]
+    picture = make_picture(thing_size)
+    lst = [0, 1, 2, 3, 4, 5]
     if request.method == 'POST':
         user_entry = (request.form['number'])
-        thing = range(int(user_entry))
-        ys = [np.random.randint(1, x+4) for x in thing]
-        picture=make_picture(thing, ys)
-        #return render_template('thing2.html', im=picture)
-    return render_template('thing.html')
+        #thing = range(int(user_entry))
+        #ys = [np.random.randint(1, x+4) for x in thing]
+        #picture=make_picture(thing, ys)
+        picture = make_picture(int(user_entry))
+        print user_entry
+        return render_template('thing2.html', lst=lst,im=picture, entry=int(user_entry))
+    return render_template('thing.html', lst=lst)
     #return render_template('thing.html', im=None)
 
 if __name__ == '__main__':

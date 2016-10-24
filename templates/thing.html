@@ -1,18 +1,20 @@
 <html>
     <head>
-
+        <link href='../static/main.css' rel='stylesheet'>
     </head>
     <body>
         <h1>Thing</h1>
         <div>
             
-            <form action = '{{ url_for("thing") }}', method="POST">
+            <form action = '{{ url_for("pictures") }}', method="POST">
                 <select name='number'>
-                    <option value='6'>6</option>
-                    <option value='7'>7</option>
+                    {% for num in lst %}
+                    <option value="{{ num }}">{{ num }}</option>
+                    {% endfor %}
                 </select>
-                <button type='submit'>Submit</button>
+                <button type='submit' class='but'>Submit</button>
             </form>
+            
         </div>
         {% block showplot %}
         {% endblock %}

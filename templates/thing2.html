@@ -1,8 +1,11 @@
-{% extends "thing.html %}
+{% extends "thing.html" %}
 {% block showplot %}
 
 <div>
     <img src='data:image/png;base64, {{ im }}' />
+</div>
+<div>
+    <p>{{ entry }}</p>
 </div>
 
 {% endblock %}
