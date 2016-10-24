@@ -1,0 +1,21 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1>Thing</h1>
+        <div>
+            
+            <form action = '{{ url_for("thing") }}', method="POST">
+                <select name='number'>
+                    <option value='6'>6</option>
+                    <option value='7'>7</option>
+                </select>
+                <button type='submit'>Submit</button>
+            </form>
+        </div>
+        {% block showplot %}
+        {% endblock %}
+    </body>
+</html>
+
