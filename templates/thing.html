@@ -5,17 +5,23 @@
     <body>
         <h1>Thing</h1>
         <div>
-            
-            <form action = '{{ url_for("pictures") }}', method="POST">
+            <!-- {% block make_form %} -->
+             <form action = '{{ url_for("pictures") }}', method="POST">
                 <select name='number'>
                     {% for num in lst %}
                     <option value="{{ num }}">{{ num }}</option>
                     {% endfor %}
                 </select>
                 <button type='submit' class='but'>Submit</button>
-            </form>
-            
+            </form> 
+            <!--  {% endblock %} -->
         </div>
+        </div>
+            {% for num in lst %}
+            {% if num|int is divisibleby 3 %}
+            <p>{{ num }}</p>
+            {% endif %}
+            {% endfor %}
         {% block showplot %}
         {% endblock %}
     </body>

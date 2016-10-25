@@ -30,7 +30,7 @@ def index():
     fig = Figure()
     ax1 = fig.add_subplot(111)
     d = np.random.randint(1,40, size=(50,2))
-    #sns.set_style('dark')
+    sns.set_style('dark')
     #xs = range(100)
     #ys = [np.random.randint(1,50) for x in xs]
 
@@ -68,7 +68,7 @@ def pictures():
         #picture=make_picture(thing, ys)
         picture = make_picture(int(user_entry))
         print user_entry
-        return render_template('thing2.html', lst=lst,im=picture, entry=int(user_entry))
+        return render_template('thing2.html', lst=lst, im=picture, entry=int(user_entry))
     return render_template('thing.html', lst=lst)
     #return render_template('thing.html', im=None)
 
