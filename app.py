@@ -16,7 +16,7 @@ def make_picture(x):
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
     ax1 = sns.violinplot(data=data)
-    ax1 = sns.pairplot(data)
+    #ax1 = sns.jointplot(data)
     output = StringIO.StringIO()
     plt.savefig(output, format='png')
     output.seek(0)
@@ -28,7 +28,7 @@ def index():
     fig = Figure()
     ax1 = fig.add_subplot(111)
     d = np.random.randint(1,40, size=(50,2))
-    sns.set_style('dark')
+    #sns.set_style('dark')
     ax1 = sns.violinplot(data=d)
     canvas = FigureCanvas(fig)
     output = StringIO.StringIO()
@@ -40,17 +40,20 @@ def index():
 
 @app.route('/thing', methods=['POST', 'GET'])
 def pictures():
-    
     thing_size=5
     thing = range(5)
     picture = make_picture(thing_size)
-    lst = [0, 1, 2, 3, 4, 5]
+    lst = [1, 2, 3, 4, 5]
     if request.method == 'POST':
         user_entry = (request.form['number'])
         picture = make_picture(int(user_entry))
         print user_entry
         return render_template('thing2.html', lst=lst, im=picture, entry=int(user_entry))
     return render_template('thing.html', lst=lst)
+
+@app.route('/bootstrap')
+def bootstrap():
+    return render_template('bootstrap_index.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000, debug=True)

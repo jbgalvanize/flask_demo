@@ -5,7 +5,7 @@
     <body>
         <h1>Thing</h1>
         <div>
-             <form method="POST">
+             <form action = '{{ url_for("pictures") }}', method="POST">
                 <select name='number'>
                     {% for num in lst %}
                     <option value="{{ num }}">{{ num }}</option>
@@ -17,17 +17,11 @@
         <div>
             {% for num in lst %}
             {% if num|int is divisibleby 3 %}
-            <p class='divisible'>{{ num }} is divisible by 3</p>
-            <br>
+            <p>{{ num }}</p>
             {% endif %}
             {% endfor %}
-        </div>
-        <div class='plots'>
         {% block showplot %}
         {% endblock %}
-        </div>
-        <div>
-            <p>{{ lst|join(',') }}</p>
         </div>
     </body>
 </html>
